@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-danger bg-2 py-0">
+  <div class="container">
+    <a href="{% url 'index' %}" class="navbar-brand">Btre</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a href="{% url 'index' %}" {% if '/' == request.path %} class="nav-link active" {% else %} class="nav-link"
+            {% endif %}>Homepage</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'about' %}" {% if 'about' in request.path %} class="nav-link active" {% else %}
+            class="nav-link" {% endif %}>About</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'listings' %}" {% if 'listings' in request.path %} class="nav-link active" {% else %}
+            class="nav-link" {% endif %}>Listings</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'login' %}" {% if 'login' in request.path %} class="nav-link active" {% else %}
+            class="nav-link" {% endif %}>Login</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'register' %}" {% if 'register' in request.path %} class="nav-link active" {% else %}
+            class="nav-link" {% endif %}>Register</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

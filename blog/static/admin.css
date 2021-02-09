@@ -1,0 +1,13 @@
+* {
+  font-family: "Operator Mono" !important;
+}
+
+#header {
+  background-color: #dc3545 !important;
+}
+
+#head {
+  color: #fff !important;
+  font-weight: 600 !important;
+  font-family: "Operator Mono" !important;
+}

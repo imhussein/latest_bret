@@ -1,0 +1,93 @@
+{% extends '../../base/base.html' %} {% block title %} {{title}} {% endblock %}
+{% load humanize %}
+{%block content %}
+<form method="GET" action="{% url 'search' %}">
+  <div class="row">
+    <div class="col-4 mb-4">
+      <div class="form-group">
+        <label for="city" class="form-label">City</label>
+        <input class="form-control form-control-lg" type="text" name="city" id="city" placeholder="City...">
+      </div>
+    </div>
+    <div class="col-4 mb-4">
+      <div class="form-group">
+        <label for="keywords" class="form-label">Keywords</label>
+        <input class="form-control form-control-lg" type="text" name="keywords" id="keywords" placeholder="Keywords...">
+      </div>
+    </div>
+    <div class="col-4 mb-4">
+      <div class="form-group">
+        <label for="state" class="form-label">State</label>
+        <select class="form-select" name="state" id="state">
+          <option disabled selected>State (All)</option>
+          {% for key, value in state_choices.items %}
+          <option value="{{key}}">{{value}}</option>
+          {%  endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="col-4 mb-4">
+      <div class="form-group">
+        <label for="price" class="form-label">Price</label>
+        <select class="form-select" name="price" id="price">
+          <option disabled selected>Price (All)</option>
+          {% for key, value in price_choices.items %}
+          <option value="{{key}}">{{value}}</option>
+          {%  endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="col-4 mb-4">
+      <div class="form-group">
+        <label for="bedrooms" class="form-label">Bedrooms</label>
+        <select class="form-select" name="bedrooms" id="bedrooms">
+          <option disabled selected>Bedrooms (All)</option>
+          {% for key, value in bedroom_choices.items %}
+          <option value="{{key}}">{{value}}</option>
+          {%  endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="col-4">
+      <button type="submit" style="width: 100%;margin-top: 31px;" class="btn btn-success btn-block">Search</button>
+    </div>
+  </div>
+</form>
+<div class="row mt-4">
+  {% if listings %} {% for listing in listings %}
+  <div class="col-md-4">
+    <div class="card">
+      <img src="{{listing.photo_main.url}}" alt="" class="card-img-top" />
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6">
+            <p class="btn btn-sm btn-success">{{listing.title}}</p>
+            <p class="btn btn-sm btn-success">{{listing.price | intcomma}}</p>
+            <p class="btn btn-sm btn-success">{{listing.city}}</p>
+          </div>
+          <div class="col-6">
+            <p class="btn btn-sm btn-primary">{{listing.state}}</p>
+            <p class="btn btn-sm btn-primary">{{listing.zipcode}}</p>
+            <p class="btn btn-sm btn-primary">{{listing.sqft}}</p>
+          </div>
+          <div class="col-6">
+            <p class="btn btn-sm btn-dark">{{listing.bedrooms}}</p>
+            <p class="btn btn-sm btn-dark">{{listing.bathrooms}}</p>
+            <p class="btn btn-sm btn-dark">
+              {{listing.list_date | timesince}}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a class="btn btn-sm btn-danger" href="{% url 'listing' listing.id %}">Show more..</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %} {% else %}
+  <div class="text-center">
+    <p class="text-muted">No Listing Found</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
