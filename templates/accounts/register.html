@@ -1,7 +1,8 @@
 {% extends '../base/base.html' %}
 {% block title %} {{title}} {% endblock %}
 {% block content %}
-<form action="{% url 'login' %}" method="POST">
+{% include '../partials/_alerts.html' %}
+<form action="{% url 'register' %}" method="POST">
   {% csrf_token %}
   <div class="row mt-4">
     <div class="col-md-6 mx-auto">
@@ -12,33 +13,33 @@
         <div class="card-body">
           <div class="form-group mb-3">
             <label for="firstName" class="form-label">FirstName</label>
-            <input type="text" id="firstName" class="form-control form-control-lg" value="{{values.firstName}}"
-              placeholder="FirstName">
+            <input type="text" id="firstName" class="form-control form-control-lg" name="firstName"
+              value="{{values.firstName}}" placeholder="FirstName">
           </div>
           <div class="form-group mb-3">
             <label for="lastName" class="form-label">LastName</label>
-            <input type="text" id="lastName" class="form-control form-control-lg" value="{{values.lastName}}"
-              placeholder="LastName">
+            <input type="text" id="lastName" class="form-control form-control-lg" name="lastName"
+              value="{{values.lastName}}" placeholder="LastName">
           </div>
           <div class="form-group mb-3">
             <label for="userName" class="form-label">Username</label>
-            <input type="text" id="userName" class="form-control form-control-lg" value="{{values.userName}}"
-              placeholder="Username">
+            <input type="text" id="userName" class="form-control form-control-lg" name="userName"
+              value="{{values.userName}}" placeholder="Username">
           </div>
           <div class="form-group mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" id="email" class="form-control form-control-lg" value="{{values.email}}"
+            <input type="email" id="email" class="form-control form-control-lg" name="email" value="{{values.email}}"
               placeholder="Email">
           </div>
           <div class="form-group mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" id="password" class="form-control form-control-lg" value="{{values.password}}"
-              placeholder="Password">
+            <input type="password" id="password" class="form-control form-control-lg" name="password"
+              value="{{values.password}}" placeholder="Password">
           </div>
           <div class="form-group mb-3">
             <label for="password_confirm" class="form-label">Password Confirm</label>
             <input type="password" id="password_confirm" class="form-control form-control-lg"
-              value="{{values.password_confirm}}" placeholder="Password Confirm">
+              value="{{values.password_confirm}}" placeholder="Password Confirm" name="password_confirm">
           </div>
         </div>
         <div class="card-footer">

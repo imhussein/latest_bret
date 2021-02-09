@@ -1,6 +1,7 @@
 {% extends '../../base/base.html' %} {% block title %} {{title}} {% endblock %}
 {% load humanize %}
 {%block content %}
+{% include '../../partials/_alerts.html' %}
 <form method="GET" action="{% url 'search' %}">
   <div class="row">
     <div class="col-4 mb-4">

@@ -18,6 +18,18 @@
           <a href="{% url 'listings' %}" {% if 'listings' in request.path %} class="nav-link active" {% else %}
             class="nav-link" {% endif %}>Listings</a>
         </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a href="{% url 'dashboard' %}" {% if 'dashboard' in request.path %} class="nav-link active" {% else %}
+            class="nav-link" {% endif %}>Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <form action="{% url 'logout' %}" method="POST" id="logout">
+            {% csrf_token %}
+          </form>
+          <a href="" class="nav-link" id="logout_link">Logout</a>
+        </li>
+        {% else %}
         <li class="nav-item">
           <a href="{% url 'login' %}" {% if 'login' in request.path %} class="nav-link active" {% else %}
             class="nav-link" {% endif %}>Login</a>
@@ -26,6 +38,7 @@
           <a href="{% url 'register' %}" {% if 'register' in request.path %} class="nav-link active" {% else %}
             class="nav-link" {% endif %}>Register</a>
         </li>
+        {% endif %}
       </ul>
     </div>
   </div>
